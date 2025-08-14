@@ -65,42 +65,7 @@ uint8_t vcp_getch(void)
 
 int32_t vcp_write(uint8_t *p_data, uint32_t length)
 {
-  int32_t  ret;
-
-  #if 1
-  uint32_t t_time;
-
-  t_time = millis();
-  while(1)
-  {
-    ret = CDC_Itf_Write( p_data, length );
-
-    if(ret < 0)
-    {
-      ret = 0;
-      break;
-    }
-    if(ret == (int32_t) length)
-    {
-      break;
-    }
-    if(millis()-t_time > 100)
-    {
-      usb_cdc_debug_cnt[1]++;
-      ret = 0;
-      break;
-    }
-  }
-  #else
-  ret = CDC_Itf_Write( p_data, length );
-
-
-  if(ret < 0)
-  {
-    ret = 0;
-  }
-  #endif
-  return ret;
+  return CDC_Itf_Write( p_data, length );
 }
 
 
@@ -125,4 +90,9 @@ int32_t vcp_printf( const char *fmt, ...)
 BOOL vcp_is_transmitted( void )
 {
   return CDC_Itf_IsTxTransmitted();
+}
+
+uint32_t vcp_write_available(void)
+{
+  return CDC_Itf_TxAvailable();
 }

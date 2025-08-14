@@ -22,6 +22,7 @@
 
 void     vcp_init(void);
 uint32_t vcp_is_available(void);
+uint32_t vcp_write_available(void);
 int32_t  vcp_peek(void);
 BOOL     vcp_is_connected(void);
 void     vcp_putch(uint8_t ch);

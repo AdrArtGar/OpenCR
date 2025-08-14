@@ -89,7 +89,7 @@ static int8_t CDC_Itf_DeInit(void);
 static int8_t CDC_Itf_Control(uint8_t cmd, uint8_t* pbuf, uint16_t length);
        void   CDC_Itf_TxISR(void);
 static int8_t CDC_Itf_Receive(uint8_t* pbuf, uint32_t *Len);
-static uint32_t CDC_Itf_TxAvailable( void );
+
 
 
 
@@ -454,12 +454,10 @@ void CDC_Itf_Write( uint8_t *p_buf, uint32_t length )
 uint32_t CDC_Itf_TxAvailable( void )
 {
   uint32_t length = 0;
-
   __disable_irq();
   length = (APP_TX_DATA_SIZE + UserTxBufPtrIn - UserTxBufPtrOut) % APP_TX_DATA_SIZE;
   length = APP_TX_DATA_SIZE - length;
   __enable_irq();
-
   return length;
 }
 

@@ -50,6 +50,7 @@ uint8_t  CDC_Itf_Getch( void );
 int32_t  CDC_Itf_Peek( void );
 BOOL     CDC_Itf_IsConnected( void );
 BOOL     CDC_Itf_IsTxTransmitted( void );
+uint32_t CDC_Itf_TxAvailable( void );
 
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
